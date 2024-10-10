@@ -1,0 +1,4 @@
+ First step is to provide the access token you get from IPInfo
+ Then to provide it run a simple command on your terminal like: export API_TOKEN=your-api-token
+
+ After that run the command to run the go program.
