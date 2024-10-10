@@ -14,7 +14,7 @@ echo "Starting to copy to S3 bucket"
 
 aws s3 mv backup.tar.gz s3://daily-folder-upload/devops/
 
-echo "Copied folder successfully"
+echo "Moved folder successfully"
 
 
 
