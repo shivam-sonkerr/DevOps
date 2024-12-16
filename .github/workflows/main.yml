@@ -16,12 +16,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Golang
-        uses : actions/setup-go@v4
-        with:
-           cache: false          
-
-      - name: Run ping
-        run: ping -c 8 google.com 
+      - name: See directory
+        run: ls -lrth
 
   
