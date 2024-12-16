@@ -1,0 +1,29 @@
+name : First Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build-test:
+    name : Build and Test
+    runs-on: ubuntu-latest
+
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Golang
+        uses : actions/setup-go@v4
+        with:
+          go-version: "1.23"
+
+      - name: Run tests
+        run: go test ./...
+
+
+      - name: Build App
+        run : go build -o myapp main.go
