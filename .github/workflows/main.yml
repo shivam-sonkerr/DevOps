@@ -22,7 +22,7 @@ jobs:
            cache: false          
 
       - name: Run ping
-        run: ping google.com 
+        run: ping -c 8 google.com 
 
       - name: Build App
         run : go build -o myapp main.go
