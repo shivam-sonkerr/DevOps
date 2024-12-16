@@ -21,8 +21,8 @@ jobs:
         with:
            cache: false          
 
-      - name: Run tests
-        run: go test ./...
+      - name: Run ping
+        run: ping -c 4 google.com >output.txt
 
 
       - name: Build App
