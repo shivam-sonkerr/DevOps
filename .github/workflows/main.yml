@@ -24,5 +24,4 @@ jobs:
       - name: Run ping
         run: ping -c 8 google.com 
 
-      - name: Build App
-        run : go build -o myapp main.go
+  
