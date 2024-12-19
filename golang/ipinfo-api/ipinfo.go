@@ -15,9 +15,9 @@ func main() {
 
 	client := ipinfo.NewClient(nil, nil, token)
 
-	const ip_address = "1.1.1.1"
+	const ipAddress = "1.1.1.1"
 
-	info, err := client.GetIPInfo(net.ParseIP(ip_address))
+	info, err := client.GetIPInfo(net.ParseIP(ipAddress))
 
 	if err != nil {
 
@@ -32,9 +32,9 @@ func main() {
 
 	}
 
-	ip_addr := string(output)
+	ipAddr := string(output)
 
-	ownIPInfo, err := ipinfo.GetIPInfo(net.ParseIP(ip_addr))
+	ownIPInfo, err := ipinfo.GetIPInfo(net.ParseIP(ipAddr))
 
 	if err != nil {
 		log.Fatal(err)
@@ -42,8 +42,8 @@ func main() {
 
 	fmt.Println("*************************************************************IP INFO API******************************************************")
 	fmt.Println("\n\n")
-	fmt.Println("Your IP Address : \n", ip_addr)
-  
+	fmt.Println("Your IP Address : \n", ipAddr)
+
 	fmt.Println("\n\n")
 	fmt.Println("Details of your IP : \n\n", ownIPInfo)
 
@@ -65,7 +65,7 @@ func main() {
 
 	fmt.Println("\n\n")
 	fmt.Println("-------------------------------------")
-	fmt.Println("Details of Cloudflare DNS IP : ", ip_address)
+	fmt.Println("Details of Cloudflare DNS IP : ", ipAddress)
 	fmt.Println("-------------------------------------")
 	fmt.Println("\n\n")
 	fmt.Println(info)
@@ -81,6 +81,6 @@ func main() {
 	fmt.Println(" Continent: ", info.Continent.Name)
 	fmt.Println(" Continent Code: ", info.Continent.Code)
 	fmt.Println(" Organization: ", info.Org)
-  fmt.Println(" Timezone: ", info.Timezone)
-  fmt.Println()
+	fmt.Println(" Timezone: ", info.Timezone)
+	fmt.Println()
 }
