@@ -12,7 +12,6 @@ provider "aws" {
 #             echo "Hey there" > index.html
 #             nohup busybox httpd -f -p ${var.server_port} &
 #             EOF
-#
 #   user_data_replace_on_change = true
 #
 #   tags = {
@@ -79,4 +78,10 @@ resource "aws_autoscaling_group" "launch" {
     value = "launch_asg"
     propagate_at_launch = true
   }
+}
+
+resource "aws_lb" "lb" {
+  name = "learn-lb"
+  load_balancer_type = "application"
+  subnets = data.aws_subnets.default.ids
 }
