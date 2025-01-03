@@ -17,3 +17,8 @@
 # output "security_group" {
 #   value = aws_security_group.instance.id
 # }
+
+output "alb_dns_name" {
+  value = aws_lb.lb.dns_name
+  description = "The domain name of the load balancer"
+}
