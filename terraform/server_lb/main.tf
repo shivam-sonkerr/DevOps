@@ -20,28 +20,28 @@ provider "aws" {
 # }
 
 
-resource "aws_security_group" "instance" {
-  name = "tf-instance"
-
-  ingress {
-    from_port = var.server_port
-    to_port = var.server_port
-    protocol = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
-}
+# resource "aws_security_group" "instance" {
+#   name = "tf-instance"
+#
+#   ingress {
+#     from_port = var.server_port
+#     to_port = var.server_port
+#     protocol = "tcp"
+#     cidr_blocks = ["0.0.0.0/0"]
+#
+#   }
+# }
 
 resource "aws_launch_template" "launch" {
   image_id      = "ami-036841078a4b68e14"
   instance_type = "t2.micro"
 
-  user_data = base64encode(<<-EOF
+  user_data = <<-EOF
     #!/bin/bash
     echo "Hey there, how are you" > index.html
     nohup busybox httpd -f -p ${var.server_port} &
   EOF
-  )
+
 
   lifecycle {
     create_before_destroy = true
@@ -144,7 +144,6 @@ resource "aws_lb_target_group" "asg" {
 resource "aws_lb_listener_rule" "asg" {
   listener_arn = aws_lb_listener.http.arn
   priority = 100
-
 
   condition {
     path_pattern {
