@@ -1,0 +1,17 @@
+name: Learning pipeline
+
+
+on:
+  push:
+    branches:
+      main
+
+
+jobs:
+  build_test:
+     name: building
+     runs-on: ubuntu-22.04
+
+     steps:
+       - name: Create a file and check
+         run: touch abc.txt 
