@@ -1,0 +1,36 @@
+2025-02-19 08:15:26,517 [http-nio-8080-exec-67] INFO provisoning.DBProvisioningService - Start getConnection
+2025-02-19 08:15:26,518 [http-nio-8080-exec-67] DEBUG provisoning.DBProvisioningService - using passed external connection :: Oracle DB-B2B-UAT - xadmin
+2025-02-19 08:15:26,521 [http-nio-8080-exec-67] DEBUG provisoning.DBProvisioningService - url before binding .. jdbc:oracle:thin:@xofficelseuatv21.levi.com:8443:xadmin
+2025-02-19 08:15:26,521 [http-nio-8080-exec-67] DEBUG provisoning.DBProvisioningService - calling templateUtilityService.getTemplateString for binding
+2025-02-19 08:15:28,051 [http-nio-8080-exec-67] ERROR provisoning.DBProvisioningService - Creating connection failed:
+java.sql.SQLRecoverableException: IO Error: Got minus one from a read call
+ at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:854)
+ at oracle.jdbc.driver.PhysicalConnection.connect(PhysicalConnection.java:793)
+ at oracle.jdbc.driver.T4CDriverExtension.getConnection(T4CDriverExtension.java:57)
+ at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:747)
+ at oracle.jdbc.driver.OracleDriver.connect(OracleDriver.java:562)
+ at java.sql.DriverManager.getConnection(DriverManager.java:664)
+ at java.sql.DriverManager.getConnection(DriverManager.java:208)
+ at com.saviynt.provisoning.DBProvisioningService.getConnection(DBProvisioningService.groovy:198)
+ at com.saviynt.ImportExternalDbService.connectToDB(ImportExternalDbService.groovy:659)
+ at com.saviynt.ImportExternalDbService.testDBConnection(ImportExternalDbService.groovy:677)
+ at com.saviynt.ecm.integration.ExternalConnectionCallService.testExternalConnection(ExternalConnectionCallService.groovy:1033)
+ at com.saviynt.ecm.utility.domain.EcmConfigController$_closure21.doCall(EcmConfigController.groovy:776)
+ at grails.plugin.springsecurity.web.filter.GrailsAnonymousAuthenticationFilter.doFilter(GrailsAnonymousAuthenticationFilter.java:53)
+ at com.saviynt.webservice.SaviyntRestAuthenticationFilter.doFilter(SaviyntRestAuthenticationFilter.groovy:159)
+ at grails.plugin.springsecurity.web.authentication.logout.MutableLogoutFilter.doFilter(MutableLogoutFilter.java:62)
+ at grails.plugin.springsecurity.web.SecurityRequestHolderFilter.doFilter(SecurityRequestHolderFilter.java:59)
+ at com.mrhaki.grails.plugin.xframeoptions.web.XFrameOptionsFilter.doFilterInternal(XFrameOptionsFilter.java:69)
+ at com.brandseye.cors.CorsFilter.doFilter(CorsFilter.java:82)
+ at java.lang.Thread.run(Thread.java:750)
+Caused by: oracle.net.ns.NetException: Got minus one from a read call
+ at oracle.net.ns.NSProtocolNIO.doSocketRead(NSProtocolNIO.java:557)
+ at oracle.net.ns.NIOPacket.readNIOPacket(NIOPacket.java:403)
+ at oracle.net.ns.NSProtocolNIO.negotiateConnection(NSProtocolNIO.java:127)
+ at oracle.net.ns.NSProtocol.connect(NSProtocol.java:340)
+ at oracle.jdbc.driver.T4CConnection.connect(T4CConnection.java:1596)
+ at oracle.jdbc.driver.T4CConnection.logon(T4CConnection.java:588)
+ ... 18 more
+2025-02-19 08:15:28,058 [http-nio-8080-exec-67] DEBUG validation.ValidationHelperService - Inside validateCommonErrorResponse
+2025-02-19 08:15:28,058 [http-nio-8080-exec-67] ERROR saviynt.ImportExternalDbService - Error while saving the Connection: Target Error Message: [java.sql.SQLRecoverableException: IO Error: Got minus one from a read call| ]
+2025-02-19 08:15:28,059 [http-nio-8080-exec-67] ERROR domain.EcmConfigController - ErrorMessage res : [Target Error Message: [java.sql.SQLRecoverableException: IO Error: Got minus one from a read call| ]]

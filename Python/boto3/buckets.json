@@ -1,0 +1,45 @@
+{
+  'ResponseMetadata': {
+    'RequestId': '3BE09BRFY3X4S61Y',
+    'HostId': 'XlbTSgwVCHcnUueaMz9pJF2/k5hY2Bv3VAYqCrGhQ+G7Po70iLh5KkOfJttE08ErxAJbazLrNM4=',
+    'HTTPStatusCode': 200,
+    'HTTPHeaders': {
+      'x-amz-id-2': 'XlbTSgwVCHcnUueaMz9pJF2/k5hY2Bv3VAYqCrGhQ+G7Po70iLh5KkOfJttE08ErxAJbazLrNM4=',
+      'x-amz-request-id': '3BE09BRFY3X4S61Y',
+      'date': 'Sat, 31 May 2025 06:45:05 GMT',
+      'x-amz-bucket-region': 'us-west-2',
+      'content-type': 'application/xml',
+      'transfer-encoding': 'chunked',
+      'server': 'AmazonS3'
+    },
+    'RetryAttempts': 0
+  },
+  'IsTruncated': False,
+  'Marker': '',
+  'Contents': [
+    {
+      'Key': 'worker.yaml',
+      'LastModified': datetime.datetime(2025,
+      5,
+      31,
+      6,
+      4,
+      16,
+      tzinfo=tzutc()),
+      'ETag': '"fb39e950d3f184d4438c1a917882f6a1"',
+      'ChecksumAlgorithm': [
+        'CRC64NVME'
+      ],
+      'Size': 363,
+      'StorageClass': 'STANDARD',
+      'Owner': {
+        'DisplayName': 'maverick48120',
+        'ID': '11f7744be0348b9f49bfb302f7398ea42dddf4afbd748b7df85693f71c812f11'
+      }
+    }
+  ],
+  'Name': '5818e50a-fbc1-48db-8879-2595dcffd3bc',
+  'Prefix': '',
+  'MaxKeys': 1000,
+  'EncodingType': 'url'
+}
