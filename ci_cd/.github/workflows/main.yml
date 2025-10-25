@@ -1,0 +1,22 @@
+name : First Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+
+jobs:
+  build-test:
+    name : Build and Test
+    runs-on: ubuntu-22.04
+
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: See directory
+        run: ls -lrth
+
+  
