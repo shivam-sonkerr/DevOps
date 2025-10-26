@@ -7,9 +7,9 @@ on:
 
 
 jobs:
-  building:
+  Hello-World:
     name: "Hello-World"
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
 
     steps:
@@ -19,3 +19,11 @@ jobs:
       - name: Print name and date
         run: echo Shivam && date
 
+  goodbye:
+    name: "Goodbye"
+    runs-on : ubuntu-latest
+    needs: Hello-World
+
+    steps:
+      - name : Printing goodbye
+        run: echo "Goodbye from Shivam!"
