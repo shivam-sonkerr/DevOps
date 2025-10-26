@@ -1,4 +1,4 @@
-name : First Pipeline
+name: "Learning Github Actions"
 
 on:
   push:
@@ -7,16 +7,17 @@ on:
 
 
 jobs:
-  build-test:
-    name : Build and Test
+  build:
+    name: Hello-world
     runs-on: ubuntu-22.04
 
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Printing
+        run: echo "Hello, Github Actions!"
 
-      - name: See directory
-        run: ls -lrth
+      - name: Print Name and Current Date
+        run: echo "Shivam" && echo datetime
 
-  
+
+
+
