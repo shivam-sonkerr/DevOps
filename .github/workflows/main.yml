@@ -7,17 +7,15 @@ on:
 
 
 jobs:
-  build:
-    name: Hello-world
-    runs-on: ubuntu-22.04
+  building:
+    name: "Hello-World"
+    runs-on: ubuntu-24.04
+
 
     steps:
       - name: Printing
-        run: echo "Hello, Github Actions!"
+        run: echo "Hello, Github Actions!!"
 
-      - name: Print Name and Current Date
-        run: echo "Shivam" && date
-
-
-
+      - name: Print name and date
+        run: echo Shivam && date
 
