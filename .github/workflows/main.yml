@@ -26,4 +26,10 @@ jobs:
 
     steps:
       - name : Printing goodbye
-        run: echo "Goodbye from Shivam!"
+        run: |
+          start_time = ${date}
+          echo start_time
+          echo "Goodbye from Shivam!"
+          finish_time = ${date}
+          total_time_taken = finish_time - start_time
+          print "Total Time take for workflow to complete: $total_time_taken"
