@@ -1,9 +1,7 @@
 name: "Learning Github Actions"
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
+
 
 
 jobs:
@@ -39,22 +37,23 @@ jobs:
 
     name: "branch-info"
     runs-on: ubuntu-latest
+    if: ${{github.ref == 'refs/heads/main'}}
     steps:
       - name: Printing details about git branches
         env:
-          GITHUB_BRANCH: ${{toJSON(github.ref)}}
+          GITHUB_BRANCH: ${{(github.ref)}}
         run: |
           echo "$GITHUB_BRANCH"
 
       - name: Printing details about SHA
         env:
-          GITHUB_SHA: ${{toJSON(github.sha)}}
-        run:
+          GITHUB_SHA: ${{(github.sha)}}
+        run: |
           echo "$GITHUB_SHA"
 
       - name: Printing details about events
         env:
-          GITHUB_EVENT: ${{toJSON(github.event)}}
+          GITHUB_EVENT: ${{(github.event)}}
         run:
           echo "$GITHUB_EVENT"
           
