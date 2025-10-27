@@ -53,7 +53,7 @@ jobs:
 
       - name: Printing details about events
         env:
-          GITHUB_EVENT: ${{github.event}}
+          GITHUB_EVENT: ${{github.event_name}}
         run: |
           echo "$GITHUB_EVENT"
           
