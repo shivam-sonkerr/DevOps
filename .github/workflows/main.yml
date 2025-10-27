@@ -41,20 +41,20 @@ jobs:
     steps:
       - name: Printing details about git branches
         env:
-          GITHUB_BRANCH: ${{(github.ref)}}
+          GITHUB_BRANCH: ${{github.ref}}
         run: |
           echo "$GITHUB_BRANCH"
 
       - name: Printing details about SHA
         env:
-          GITHUB_SHA: ${{(github.sha)}}
+          GITHUB_SHA: ${{github.sha}}
         run: |
           echo "$GITHUB_SHA"
 
       - name: Printing details about events
         env:
-          GITHUB_EVENT: ${{(github.event)}}
-        run:
+          GITHUB_EVENT: ${{github.event}}
+        run: |
           echo "$GITHUB_EVENT"
           
           
