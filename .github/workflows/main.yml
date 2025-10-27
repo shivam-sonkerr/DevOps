@@ -31,5 +31,31 @@ jobs:
           echo $start_time
           echo "Goodbye from Shivam!"
           finish_time=$(date +%s)
+          echo $finish_time
           total_time_taken=$((finish_time-start_time))
           echo "Total Time take for workflow to complete: $total_time_taken"
+
+  branch-info:
+
+    name: "branch-info"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Printing details about git branches
+        env:
+          GITHUB_BRANCH: ${{toJSON(github.ref)}}
+        run: |
+          echo "$GITHUB_BRANCH"
+
+      - name: Printing details about SHA
+        env:
+          GITHUB_SHA: ${{toJSON(github.sha)}}
+        run:
+          echo "$GITHUB_SHA"
+
+      - name: Printing details about events
+        env:
+          GITHUB_EVENT: ${{toJSON(github.event)}}
+        run:
+          echo "$GITHUB_EVENT"
+          
+          
