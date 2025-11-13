@@ -68,6 +68,18 @@ def start_instance():
                     print("Instance is terminated and cannot be started.")
                     return
 
+                if instance['State']['Name'] == "pending":
+                    print("Instance is starting up")
+                    return
+
+                if instance['State']['Name'] == "stopping":
+                    print("Instance is in process of stopping.")
+                    return
+
+                if instance['State']['Name'] == "shutting-down":
+                    print("Instance is terminating")
+                    return
+
                 if instance['State']['Name'] == "stopped":
 
                     response = client.start_instances(
@@ -82,6 +94,5 @@ def start_instance():
 
 
 instance_details()
-
 stop_instance()
-
+start_instance()
