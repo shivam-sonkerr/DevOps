@@ -45,12 +45,43 @@ def stop_instance():
     print("Instance not found")
     return
 
+def start_instance():
+    response = client.describe_instances()
 
+    print("Provide Instance ID: ")
+    instance_to_start = input()
 
+    if instance_to_start == "":
+        print("Empty value is given.")
+        return
 
+    for reservation in response['Reservations']:
+        for instance in reservation['Instances']:
 
+            if instance['InstanceId']== instance_to_start:
+
+                if instance['State']['Name'] == "running":
+                    print("Instance is already running.")
+                    return
+
+                if instance['State']['Name'] == "terminated":
+                    print("Instance is terminated and cannot be started.")
+                    return
+
+                if instance['State']['Name'] == "stopped":
+
+                    response = client.start_instances(
+                        InstanceIds = [
+                            instance_to_start,
+                        ]
+                    )
+                    print("Instance has started now!")
+                return
+    print("Instance not found")
+    return
 
 
 instance_details()
 
 stop_instance()
+
