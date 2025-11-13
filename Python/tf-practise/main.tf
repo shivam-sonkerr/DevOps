@@ -67,3 +67,38 @@ resource "aws_route_table_association" "public" {
   subnet_id = aws_subnet.public.id
   route_table_id = aws_route_table.public.id
 }
+
+
+resource "aws_security_group" "ec2" {
+  name = "${var.environment}-ec2-sg"
+  description = "Allow HTTP and SSH"
+  vpc_id = aws_vpc.learn.id
+
+  ingress{
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = var.common_tags
+}
+
+module "web_servers" {
+  source = "./modules/ec2"
+
+  instance_count = var.instance_count
+  instance_type = var.instance_type
+  ami_id = data.aws_ami.amazon_linux.id
+  subnet_id = aws_subnet.public.id
+  security_groups = [aws_security_group.ec2.id]
+  environment = var.environment
+  tags = var.common_tags
+
+}

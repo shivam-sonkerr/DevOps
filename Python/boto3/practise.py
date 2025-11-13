@@ -1,59 +1,56 @@
-countries ={'USA':'Washington','India':'New Delhi','Australia':'Canberra'}
+import boto3
 
-print(countries)
+client = boto3.client('ec2',region_name = 'us-east-1')
 
-print(countries.values())
+def instance_details():
+    response = client.describe_instances()
+    count = 0
+    print("Enter state of the instance to be checked : ")
+    state_to_check = input()
 
-print(countries['India'])
-
-countries['Japan'] = 'Tokyo'
-
-print(countries)
-
-countries['USA'] = 'Washington DC'
-
-print(countries)
-print("\n")
-
-for text in countries.keys():
-    if text=='France':
-        print("France exists")
-        break
-else:
-        print("Does not exist")
+    for reservation in response['Reservations']:
+        for instance in reservation['Instances']:
+            count = count +1
+            if instance['State']['Name']== state_to_check.lower() :
+                print("Instance number : ",count)
+                print("Instance ID is: ",instance['InstanceId'])
+                print("Instance Type is: ",instance['InstanceType'])
+                print("State of the instance is: ",instance['State'].get('Name'))
+                print("\n")
 
 
-hex = {'red':'#ff0000','green':'#3cb371','yellow':'#ffa500'}
+def stop_instance():
+    response = client.describe_instances()
 
-print(hex)
-print("\n")
+    print(" Provide Instance ID : ")
+    instance_stop = input()
+    if instance_stop == "":
+        print("Empty value is given.")
+        return
 
 
-for key in hex.keys():
-    print(key)
+    for reservation in response['Reservations']:
+        for instance in reservation['Instances']:
+            if instance['InstanceId'] == instance_stop:
+                current_status = instance['State']['Name'].lower()
 
-print("\n")
 
-for codes in hex.values():
-    print(codes)
+                if current_status == "running":
+                    response = client.stop_instances(
+                    InstanceIds = [
+                        instance_stop,
+                    ])
+                    print("Instance is stopped now!")
+                return
+    print("Instance not found")
+    return
 
-animal = {'Horse':'neigh','dog':'bark','cat':'meow'}
 
-print(animal['dog'])
 
-del (animal['cat'])
 
-print(animal)
 
-print(animal.get('cow'))
 
-random = {}
 
-random['name'] = 'john'
-random['age'] = '21'
-random['city'] = 'Arizona'
+instance_details()
 
-print(random,"\n")
-
-for counting in random.keys():
-    print(counting)
+stop_instance()
