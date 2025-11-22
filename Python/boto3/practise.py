@@ -92,6 +92,17 @@ def start_instance():
     print("Instance not found")
     return
 
+def instance_summary():
+    response = client.describe_instances()
+
+    total_num_instances = 0
+
+    for reservation in response['Reservations']:
+        for instance in reservation['Instances']:
+            total_num_instances = total_num_instances+1
+    print(total_num_instances)
+
+
 
 instance_details()
 stop_instance()
