@@ -9,25 +9,28 @@ def batch_operation ():
 
     batch_instances = []
 
-    print("Number of instances to be stopped: ")
-    num = input()
-    print("Provide instance IDs: ")
+    # print("Number of instances to be stopped: ")
+    # num = input()
+    # print("Provide instance IDs: ")
+
+    # for i in range(0,int(num)):
+    #     i = input()
+    #     batch_instances.append(i)
+
+    current_running_list = []
+
+    for reservation in response['Reservations']:
+        for instance in reservation['Instances']:
+            current_status = instance['State']['Name']
+
+            if current_status == 'running':
+                current_running_list.append(instance['InstanceId'])
 
 
-
-    for i in range(0,int(num)):
-        i = input()
-        batch_instances.append(i)
-
-    print(batch_instances)
-
-
-    # for reservation in response['Reservations']:
-    #     for instance in reservation['Instances']:
-    #
-    #         print(instance['State']['Name'])
-
-
-
+    print(current_running_list)
+    response = client.stop_instances(
+            InstanceIds = current_running_list
+            )
+    print("Instance has been stopped!")
 
 batch_operation()

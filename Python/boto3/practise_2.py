@@ -1,5 +1,4 @@
 import boto3
-from collections import Counter
 client = boto3.client('ec2',region_name = 'us-east-1')
 
 
@@ -20,13 +19,14 @@ def instance_summary():
 
             instance_id = instance['InstanceId']
 
-
+            print("Instance IDs are: ", "\n", instance_id)
             state_counter[instance['State']['Name']] = state_counter.get(instance['State']['Name'],0) +1
             instance_type_counter[instance['InstanceType']] = instance_type_counter.get(instance['InstanceType'],0)+1
 
     print("-----------Instance Summary-----------")
     print("By State:","\n",state_counter)
     print("By instance type:","\n",instance_type_counter)
+
     print("Total number of instances are: ",total_num_instances,"\n")
 
 
