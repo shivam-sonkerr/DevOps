@@ -25,8 +25,8 @@ def instance_summary():
             instance_type_counter[instance['InstanceType']] = instance_type_counter.get(instance['InstanceType'],0)+1
 
     print("-----------Instance Summary-----------")
-    print("By State","\n",state_counter)
-    print("By instance type","\n",instance_type_counter)
+    print("By State:","\n",state_counter)
+    print("By instance type:","\n",instance_type_counter)
     print("Total number of instances are: ",total_num_instances,"\n")
 
 
