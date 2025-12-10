@@ -1,14 +1,18 @@
 import boto3
 from botocore.exceptions import ClientError
-from rich import print
-from rich.pretty import Pretty
+
 
 client = boto3.client('ec2',region_name = 'us-east-1')
 
 
 def batch_operation ():
-    response = client.describe_instances()
-
+    try:
+        response = client.describe_instances()
+    except ClientError as error:
+        print(error.response['ResponseMetadata']['HTTPStatusCode'])
+        print(error.response['Error']['Code'])
+        print(error.response['Error']['Message'])
+        return
     batch_instances = []
 
     print("Number of instances to be stopped: ")
