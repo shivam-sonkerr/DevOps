@@ -1,5 +1,7 @@
 import boto3
-
+from botocore.exceptions import ClientError
+from rich import print
+from rich.pretty import Pretty
 
 client = boto3.client('ec2',region_name = 'us-east-1')
 
@@ -54,6 +56,7 @@ def batch_operation ():
             if l==m:
                 final_list.append(m)
 
+
     if len(final_list) == 0:
         print("No valid instances are there to be stopped")
         return
@@ -65,12 +68,22 @@ def batch_operation ():
     decision = input()
 
     if decision in ('y','Y','yes'):
-        response = client.stop_instances(
-            InstanceIds= final_list
-        )
-        print("Instances have been stopped!")
+        try:
+            response = client.stop_instances(
+                InstanceIds= final_list
+            )
+            print("Instances have been stopped!")
+        except ClientError as error:
+                print(error.response['Error']['Code'])
+                print(error.response['ResponseMetadata']['HTTPStatusCode'])
+                print(error.response['Error']['Message'])
     else:
         print("As you have selected no therefore none of the instances will be stopped")
         return
+
+
+
+
+
 
 batch_operation()
