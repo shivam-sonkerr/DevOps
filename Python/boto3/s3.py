@@ -66,14 +66,54 @@ def download_file():
         response = client.list_objects(
             Bucket = bucket_name
         )
+
         for content in response['Contents']:
             file_name = content['Key']
-            client.download_file(bucket_name,file_name,'/Users/shivam/abc.pdf')
-            print("File has been downloaded, please check at the path.")
+            print(file_name)
+
+        print("Select which file to download")
+        file_to_download = input()
+
+        # client.download_file(bucket_name,file_to_download,'/Users/shivam/'+file_to_download)
+        #
+        # print("File has been downloaded, please check at the path.")
     except ClientError as error:
         print(error.response)
+
+
+
+def get_object():
+
+    print("Enter bucket name: ")
+    bucket_name = input()
+
+    try:
+        response = client.list_objects(
+            Bucket = bucket_name
+        )
+
+
+
+        for content in response['Contents']:
+            file_name = content['Key']
+            print(file_name)
+
+        print("Select which file to download")
+        file_to_download = input()
+
+
+        response = client.get_object(
+            Bucket = bucket_name,
+            Key = file_to_download
+        )
+
+        print(response['Body'].read())
+    except ClientError as error:
+        print(error.response)
+
 
 create_bucket()
 list_buckets()
 list_objects()
 download_file()
+get_object()
