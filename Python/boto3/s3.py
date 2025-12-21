@@ -58,6 +58,22 @@ def list_objects():
         print(error.response['Error']['Code'])
         print(error.response['Error']['Message'])
 
+def download_file():
+    print("Enter bucket name: ")
+    bucket_name = input()
+
+    try:
+        response = client.list_objects(
+            Bucket = bucket_name
+        )
+        for content in response['Contents']:
+            file_name = content['Key']
+            client.download_file(bucket_name,file_name,'/Users/shivam/abc.pdf')
+            print("File has been downloaded, please check at the path.")
+    except ClientError as error:
+        print(error.response)
+
 create_bucket()
 list_buckets()
 list_objects()
+download_file()
