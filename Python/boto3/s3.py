@@ -31,7 +31,7 @@ def list_buckets():
         response = client.list_buckets()
         for bucket in response['Buckets']:
             name = bucket['Name']
-            print("Name of the bucket are :",name)
+            print("Name of the buckets are :",name)
     except ClientError as error:
         print(error.response['Error']['Code'])
         print(error.response['Error']['Message'])
