@@ -2,3 +2,8 @@
 *.tfstate
 *.tfstate.backup
 *.tar.gz
+.DS_Store
+.venv/
+.vscode/
+__pycache__/
+*.terraform.lock.hcl

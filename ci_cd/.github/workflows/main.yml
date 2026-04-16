@@ -1,22 +1,60 @@
-name : First Pipeline
+name: "Learning Github Actions"
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
+
 
 
 jobs:
-  build-test:
-    name : Build and Test
-    runs-on: ubuntu-22.04
+  Hello-World:
+    name: "Hello-World"
+    runs-on: ubuntu-latest
 
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Printing
+        run: echo "Hello, Github Actions!!"
 
-      - name: See directory
-        run: ls -lrth
+      - name: Print name and date
+        run: echo Shivam && date
 
-  
+  goodbye:
+    name: "Goodbye"
+    runs-on : ubuntu-latest
+    needs: Hello-World
+
+    steps:
+      - name : Printing goodbye
+        run: |
+          start_time=$(date +%s)
+          echo $start_time
+          echo "Goodbye from Shivam!"
+          finish_time=$(date +%s)
+          echo $finish_time
+          total_time_taken=$((finish_time-start_time))
+          echo "Total Time take for workflow to complete: $total_time_taken"
+
+  branch-info:
+
+    name: "branch-info"
+    runs-on: ubuntu-latest
+    if: ${{github.ref == 'refs/heads/main'}}
+    steps:
+      - name: Printing details about git branches
+        env:
+          GITHUB_BRANCH: ${{github.ref}}
+        run: |
+          echo "$GITHUB_BRANCH"
+
+      - name: Printing details about SHA
+        env:
+          GITHUB_SHA: ${{github.sha}}
+        run: |
+          echo "$GITHUB_SHA"
+
+      - name: Printing details about events
+        env:
+          GITHUB_EVENT: ${{github.event_name}}
+        run: |
+          echo "$GITHUB_EVENT"
+          
+          
